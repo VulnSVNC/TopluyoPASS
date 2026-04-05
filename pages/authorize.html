@@ -1,0 +1,335 @@
+<script>
+
+document.documentElement.classList.add(localStorage._theme=="theme-light"?"theme-light":"theme-dark");
+  
+var s = CODE.split(";;")
+let options = {
+  app_name:s[0],
+  app_image:s[1],
+  app_redirect_uri:s[2],
+  app_id:s[3],
+  state:s[4],
+  user_id:s[5],
+  user_name:s[6],
+  user_nick:s[7],
+  user_image:s[8],
+  auth_code:s[9]
+}
+
+
+document.addEventListener("DOMContentLoaded",function(){
+  document.body.innerHTML = `
+  <div class="card">
+
+    <div class="header">
+      <div class="brand-row">
+        <img class="brand-logo" src="https://cdn.topluyo.com/kanka/kanka-color-solid.svg" alt="Topluyo">
+        <div class="brand-divider"></div>
+        <img class="app-logo" src="${options.app_image}" alt="${options.app_name}">
+      </div>
+      <h1>Topluyo ile giriş yap</h1>
+      <p>KodluyoAuth uygulamasına erişim izni ver</p>
+    </div>
+
+    <div class="user-chip">
+      <img class="avatar" src="${options.user_image}" alt="avatar">
+      <div>
+        <div class="user-name">${options.user_name}</div>
+        <div class="user-meta">@${options.user_nick} · #${options.user_id}</div>
+      </div>
+    </div>
+
+    <div class="app-info">
+      <img class="app-icon" src="${options.app_image}" alt="${options.app_name}">
+      <h2>${options.app_name}</h2>
+      <div class="app-url">${options.app_redirect_uri}</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="perm-title">Bu uygulama şunlara erişecek</div>
+    <div class="perms">
+      <div class="perm-item">
+        <svg class="perm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Kullanıcı adı ve profil bilgileri
+      </div>
+      <div class="perm-item">
+        <svg class="perm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Hesap kimlik numarası (salt okunur)
+      </div>
+      <div class="perm-item">
+        <svg class="perm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        Profil fotoğrafı
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-cancel" onclick="history.back()">İptal</button>
+      <a href="${options.app_redirect_uri}?code=${options.auth_code}&state=${options.state}" class="btn btn-allow">İzin ver</a>
+    </div>
+
+  </div>
+  <!--
+  <div class="footer">
+    Devam ederek Topluyo'nun <a href="#">Kullanım Koşulları</a>'nı ve <a href="#">Gizlilik Politikası</a>'nı kabul etmiş olursunuz.
+  </div>
+  -->
+  `
+})
+</script>
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+  *{
+    box-sizing:border-box;
+    padding:0;margin:0;
+  }
+  body{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    --primary:#DE11BA;
+    background:#DDD;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KodluyoAuth – Topluyo ile Giriş</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    x-font-family: 'Roboto', sans-serif;
+    background: #f1f3f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    --primary:#DE11BA;
+    --primary-opacity:#DE11BA22;
+    --primary-dark:#AB22ED;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 28px;
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem 2.25rem 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.06);
+    animation: rise .3s ease both;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .brand-logo {
+    width: 32px; height: 32px;
+    object-fit: contain;
+  }
+
+  .brand-divider {
+    width: 1px; height: 28px;
+    background: #dadce0;
+  }
+
+  .app-logo {
+    width: 32px; height: 32px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .header h1 {
+    x-font-family: 'Google Sans', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #202124;
+    margin-bottom: .35rem;
+  }
+
+  .header p {
+    font-size: .875rem;
+    color: #5f6368;
+  }
+
+  .user-chip {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    border: 1px solid #dadce0;
+    border-radius: 100px;
+    padding: .45rem .9rem .45rem .45rem;
+    width: fit-content;
+    margin: 0 auto 1.75rem;
+  }
+
+  .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .user-name {
+    font-size: .825rem;
+    font-weight: 500;
+    color: #202124;
+    line-height: 1.2;
+  }
+
+  .user-meta {
+    font-size: .725rem;
+    color: #5f6368;
+  }
+
+  .app-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .app-info .app-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-bottom: .75rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  }
+
+  .app-info h2 {
+    x-font-family: 'Google Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: .25rem;
+  }
+
+  .app-info .app-url {
+    font-size: .775rem;
+    color: var(--primary);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #f1f3f4;
+    margin: 0 0 1.25rem;
+  }
+
+  .perm-title {
+    font-size: .75rem;
+    font-weight: 500;
+    color: #5f6368;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: .75rem;
+  }
+
+  .perms {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    margin-bottom: 2rem;
+  }
+
+  .perm-item {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    font-size: .875rem;
+    color: #3c4043;
+  }
+
+  .perm-icon {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    color: var(--primary);
+  }
+
+  .actions {
+    display: flex;
+    gap: .75rem;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    x-font-family: 'Google Sans', sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    padding: .6rem 1.5rem;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .15s, box-shadow .15s;
+    display: inline-block;
+  }
+
+  .btn-cancel {
+    background: transparent;
+    color: var(--primary);
+  }
+  .btn-cancel:hover { background: var(--primary-opacity); }
+
+  .btn-allow {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 1px 3px var(--primary-opacity);
+  }
+  .btn-allow:hover { background: var(--primary-dark); }
+
+  .footer {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: .7rem;
+    color: #80868b;
+  }
+
+  .footer a { color: var(--primary); text-decoration: none; }
+</style>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<body style="padding:1em">
+  
+</body>
+
+<script>
+
+document.documentElement.classList.add(localStorage._theme=="theme-light"?"theme-light":"theme-dark");
+  
+var s = CODE.split(";;")
+let options = {
+  app_name:s[0],
+  app_image:s[1],
+  app_redirect_uri:s[2],
+  app_id:s[3],
+  state:s[4],
+  user_id:s[5],
+  user_name:s[6],
+  user_nick:s[7],
+  user_image:s[8],
+  auth_code:s[9]
+}
+
+document.body.innerHTML = `
+<div style="background:white;margin: auto;display: block;max-width: 720px;padding: 1em;border-radius:1em;">
+  <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1em;">
+    <img src="https://cdn.topluyo.com/kanka/kanka-color-solid.svg" style="max-width:15vh"> 
+    <b style='font-size:3em'>→</b>
+    <img src="${options.app_image}" style="max-width:15vh">
+  </div>
+  <br>
+  <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1em;">
+    <div style="display:flex;flex-direction:column;justify-content:center;">
+      <img src="${options.user_image}" style="max-width:15vh">
+      <b>${options.user_name}</b>
+      <div style="opacity:.8;font-size:.8em;">@${options.user_nick} #${options.user_id}</div>
+    </div>
+    <div>
+      <div><b>${ options.app_name }</b> Uygulaması Topluyo ile oturum açmak istiyor.</div>
+      <div>Paylaşılacak bilgiler:</div>
+      <div>☑ Kullanıcı ID: ${options.user_id}</div>
+      <div>☑ Kullanıcı Adı: ${options.user_name}</div>
+      <div>☑ Kullanıcı Kodu: ${options.user_nick}</div>
+      <div>☑ Kullanıcı Resmi: ${options.user_image}</div>
+    </div>
+  </div>
+  <br>
+  <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1em;">
+    <a href="${options.app_redirect_uri}?code=${options.auth_code}&state=${options.state}" style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1em;background:var(--primary);text-decoration:none;color:white;padding:.5em 1.5em;border-radius:1em;">
+      <img src='https://cdn.topluyo.com/kanka/kanka-white-border.png' style='width:1.5em;'>
+      Topluyo ile devam et
+    </a>
+  </div>
+</div>
+`
+
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+  *{
+    box-sizing:border-box;
+    padding:0;margin:0;
+  }
+  body{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    --primary:#DE11BA;
+    background:#DDD;
+  }
+</style>

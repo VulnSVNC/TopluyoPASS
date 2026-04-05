@@ -1,0 +1,19 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+  *{
+    box-sizing:border-box;
+    padding:0;margin:0;
+  }
+  body{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    --primary:#DE11BA;
+  }
+</style>
+<body style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1em;">
+  <script>
+    document.documentElement.classList.add(localStorage._theme=="theme-light"?"theme-light":"theme-dark");
+  </script>
+  <img src="https://cdn.topluyo.com/kanka/kanka-color-solid.svg" style="max-width:25vh">
+  <h1>Kullanıcı Oturum Açmamış</h1>
+</body>
