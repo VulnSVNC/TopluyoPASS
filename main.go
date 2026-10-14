@@ -144,7 +144,7 @@ func main() {
 			write(e)
 		}
 
-
+//BU KISIMDAKİ ZAFİYET GÜNCEL DEĞİLDİR CANLI SİSTEM ÜZERİNDE KAPATILMIŞTIR
 		code := app_name + ";;" + app_image + ";;" + redirect_uri + ";;" + client_id + ";;" + state + ";;" + ToString(user_id) + ";;" + user_name + ";;" + user_nick + ";;" + user_image + ";;" + auth_code 
 		fill := "<script>CODE=\""+strings.ReplaceAll(code, `"`, `\"`)+"\"</script>\n"
     
